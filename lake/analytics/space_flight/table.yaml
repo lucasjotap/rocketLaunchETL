@@ -1,0 +1,5 @@
+table:
+  name: space_flight
+  columns:
+      - id:
+        type: string

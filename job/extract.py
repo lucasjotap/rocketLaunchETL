@@ -1,6 +1,6 @@
 import json
 import requests
-from typing import List
+from typing import Dict, List 
 from requests import Response
 from pyspark.sql import SparkSession
 
@@ -11,8 +11,11 @@ class SparkHandler:
 	def create_session(self):
 		return SparkSession.builder.getOrCreate()
 
-class Extract:
-
+class ExtractJob(Job):
+	@property
+	def job_name(self) -> str:
+		return "extract"
+	
 	def get_data_from_api(self, page) -> Response:
 		"""Extracts data from API by page."""
 		URL: str = f"https://api.spaceflightnewsapi.net/v4/reports/?offset={page}"
@@ -49,6 +52,5 @@ class Extract:
 		df.printSchema()
 		df.write.parquet("data_files/space_flight")
 
-if __name__ == "__main__":
-	extractor = Extract()
-	extractor.api_data_to_parquet()
+	def run(self):
+		self.api_data_to_parquet()
