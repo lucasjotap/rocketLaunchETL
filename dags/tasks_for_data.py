@@ -4,7 +4,7 @@ import pathlib
 import airflow
 import requests
 import requests.exceptions as requests_exceptions
-from ETLprocess.job.data_files.new_extract import api_data_to_parquet
+import new_extract
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
@@ -16,7 +16,7 @@ dag = DAG(
 )
 
 def _run_job():
-    api_data_to_parquet()
+    new_extract.api_data_to_parquet()
 
 run_job = PythonOperator(
     task_id="run_job",
