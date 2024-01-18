@@ -7,14 +7,11 @@ from concurrent.futures import ThreadPoolExecutor
 
 
 class SparkHandler:
-
 	@classmethod
 	def create_session(self):
 		return SparkSession.builder.getOrCreate()
 
-
 class ExtractJob(object):
-
 	def __init__(self):
 		self.session = requests.Session()
 
@@ -27,7 +24,6 @@ class ExtractJob(object):
 		URL: str = f"https://api.spaceflightnewsapi.net/v4/reports/?offset={page}"
 		with self.session.get(URL) as request:
 			return request.json() if request.status_code == 200 else []
-
 
 	def get_all_pages(self) -> List:
 		"""Retrieves every page from the API."""

@@ -22,6 +22,5 @@ class TransformationJob:
 		df = df.drop("summary").sort(df.updated_at.desc())
 		df.write.parquet("data_files/transformation_one")
 
-
 transform_data = TransformationJob()
 transform_data.transform_data()
