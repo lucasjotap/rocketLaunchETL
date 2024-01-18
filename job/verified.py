@@ -5,7 +5,6 @@ from requests import Response
 from pyspark.sql import SparkSession
 from concurrent.futures import ThreadPoolExecutor
 
-
 class SparkHandler:
 	@classmethod
 	def create_session(self):

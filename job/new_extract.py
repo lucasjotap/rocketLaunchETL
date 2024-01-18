@@ -5,12 +5,11 @@ from requests import Response
 from pyspark.sql import SparkSession
 from concurrent.futures import ThreadPoolExecutor
 
-
 class SparkHandler:
+
     @classmethod
     def create_session(cls):
         return SparkSession.builder.getOrCreate()
-
 
 class ExtractJob:
     def __init__(self):
@@ -58,7 +57,6 @@ class ExtractJob:
     def run(cls):
         job = cls()
         job.api_data_to_parquet()
-
 
 if __name__ == "__main__":
     ExtractJob.run()
