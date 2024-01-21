@@ -1,4 +1,4 @@
-from ABC import abstractmethod
+from abc import ABC, abstractmethod
 
 class Job:
     """

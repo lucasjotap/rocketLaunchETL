@@ -2,6 +2,7 @@ import json
 import logging
 import requests
 
+from job import Job
 from typing import Dict, List 
 from requests import Response
 from spark_handler import SparkHandler
@@ -73,12 +74,17 @@ class ExtractJob(Job):
         Returns:
             None
         """
-		data = json.dumps(self.get_all_pages())
-		spark = SparkHandler.create_session()
-		df = spark.createDataFrame(data=self.get_all_pages())
+		# data = json.dumps(self.get_all_pages())
+		SparkHandler.create_session()
+		df = SparkHandler.spark.createDataFrame(data=self.get_all_pages())
 		df = df.repartition(1)
 		df.printSchema()
 		df.write.parquet("ETLprocess/lake/space_flight/")
 
-	def run(self):
-		self.api_data_to_parquet()
+	@classmethod
+	def run(cls):
+		cls().api_data_to_parquet()
+
+if __name__ == "__main__":
+	extract_job = ExtractJob()
+	extract_job.run()

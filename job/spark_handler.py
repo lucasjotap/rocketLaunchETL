@@ -1,10 +1,13 @@
 from pyspark.sql import SparkSession
 
 class SparkHandler:
-	self.spark = None
 	"""
 	Class SparkHandler holds only a method for instantiating a SparkSession.
 	"""
+	spark = None
+
 	@classmethod
-	def create_session(self):
-		return spark = SparkSession.builder.getOrCreate() if spark == None else self.spark
+	def create_session(cls):
+		if cls.spark is None:
+			cls.spark = SparkSession.builder.appName("getCash").getOrCreate()
+		return cls.spark
