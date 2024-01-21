@@ -17,7 +17,6 @@ class ExtractJob(Job):
 		get_all_pages -> list
 		api_to_parquet -> None
 	"""
-
 	@property
 	def job_name(self) -> str:
 		return "extract"
