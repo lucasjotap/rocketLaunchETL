@@ -1,10 +1,10 @@
 import json
 import pathlib
+import new_extract
 
 import airflow
 import requests
 import requests.exceptions as requests_exceptions
-import new_extract
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator

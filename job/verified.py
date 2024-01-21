@@ -6,6 +6,9 @@ from pyspark.sql import SparkSession
 from concurrent.futures import ThreadPoolExecutor
 
 class SparkHandler:
+	"""
+	Class SparkHandler holds only a method for instantiating a SparkSession.
+	"""
 	@classmethod
 	def create_session(self):
 		return SparkSession.builder.getOrCreate()
@@ -18,7 +21,7 @@ class ExtractJob(object):
 	def job_name(self) -> str:
 		return "extract"
 	
-	def get_data_from_api(self, page) -> List:
+	def get_data_from_api(self, page: int) -> List:
 		"""Extracts data from API by page."""
 		URL: str = f"https://api.spaceflightnewsapi.net/v4/reports/?offset={page}"
 		with self.session.get(URL) as request:
