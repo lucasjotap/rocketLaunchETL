@@ -1,17 +1,11 @@
 import json
 import requests
+
 from typing import Dict, List 
 from requests import Response
-from pyspark.sql import SparkSession
+from spark_handler import SparkHandler
 from concurrent.futures import ThreadPoolExecutor
 
-class SparkHandler:
-	"""
-	Class SparkHandler holds only a method for instantiating a SparkSession.
-	"""
-	@classmethod
-	def create_session(self):
-		return SparkSession.builder.getOrCreate()
 
 class ExtractJob(object):
 	def __init__(self):
@@ -28,7 +22,12 @@ class ExtractJob(object):
 			return request.json() if request.status_code == 200 else []
 
 	def get_all_pages(self) -> List:
-		"""Retrieves every page from the API."""
+		"""
+		Retrieves every page from the API.
+			
+		Returns:
+			List: A list containing data from all API pages.		
+		"""
 		all_pages: List = []
 		page_num: int = 0
 
