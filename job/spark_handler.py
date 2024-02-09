@@ -9,5 +9,10 @@ class SparkHandler:
 	@classmethod
 	def create_session(cls):
 		if cls.spark is None:
-			cls.spark = SparkSession.builder.appName("getCash").getOrCreate()
+			cls.spark = (
+				SparkSession
+				.builder
+				.appName("getCash")
+				.getOrCreate()
+			)
 		return cls.spark
