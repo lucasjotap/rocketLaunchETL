@@ -34,6 +34,28 @@ See [LAKEHOUSE_SETUP.md](LAKEHOUSE_SETUP.md) for setup instructions and [lakehou
 
 ## 🛠️ Setup
 
+### Docker Setup (Recommended for Lakehouse Engine)
+
+For running the Lakehouse Engine locally, Docker is the easiest option:
+
+```bash
+# Set Airflow user (Linux)
+export AIRFLOW_UID=$(id -u)
+
+# Initialize Airflow (first time only)
+docker-compose up airflow-init
+
+# Build and start services
+docker-compose up -d --build
+
+# Run Lakehouse Engine pipelines
+docker-compose exec lakehouse-engine python -m lakehouse.jobs.orchestrator
+```
+
+See [DOCKER_USAGE.md](DOCKER_USAGE.md) for detailed Docker usage instructions.
+
+### Local Setup (Without Docker)
+
 ### 1. Clone and Navigate
 
 ```bash
