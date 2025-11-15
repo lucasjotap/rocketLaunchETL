@@ -2,6 +2,17 @@
 
 This project contains Apache Airflow DAGs for extracting data from various finance, economics, currency, blockchain, and cryptocurrency APIs.
 
+## 🏗️ Lakehouse Architecture
+
+This project now includes a **Lakehouse Engine** integration for processing financial data through bronze/silver/gold layers. The Lakehouse Engine is a configuration-driven Spark framework that provides:
+
+- **Configuration-Driven ETL**: Define entire pipelines using ACON (Algorithm Configuration) files
+- **Data Quality**: Built-in validations using Great Expectations
+- **Delta Lake**: All data stored in Delta format for ACID transactions
+- **No Spark Code Required**: Everything is configuration-based
+
+See [LAKEHOUSE_SETUP.md](LAKEHOUSE_SETUP.md) for setup instructions and [lakehouse/README.md](lakehouse/README.md) for detailed usage.
+
 ## 🚀 Features
 
 - **5 New DAGs** for different data sources:
@@ -121,13 +132,21 @@ rocketLaunchETL/
 │   ├── currency/
 │   ├── blockchain/
 │   └── bitcoin/
+├── lakehouse/                     # Lakehouse Engine implementation
+│   ├── acon_configs/              # ACON configuration files
+│   ├── jobs/                      # ETL job scripts
+│   ├── bronze/                    # Raw data in Delta format
+│   ├── silver/                    # Cleaned and validated data
+│   └── gold/                      # Aggregated business-ready data
+├── lakehouse_engine/              # Lakehouse Engine framework (local package)
 ├── logs/                          # Airflow logs (created automatically)
 ├── plugins/                       # Airflow plugins (optional)
 ├── Dockerfile                     # Airflow Docker image
 ├── docker-compose.yml             # Docker Compose configuration
 ├── requirements.txt               # Python dependencies
 ├── .env.example                   # Environment variables template
-└── README.md                      # This file
+├── README.md                      # This file
+└── LAKEHOUSE_SETUP.md             # Lakehouse Engine setup guide
 ```
 
 ## 🔧 Management Commands
