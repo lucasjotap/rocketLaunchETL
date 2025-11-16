@@ -21,7 +21,8 @@ RUN SPARK_VERSION=3.5.0 && \
     tar -xzf spark-${SPARK_VERSION}-bin-hadoop3.tgz && \
     mv spark-${SPARK_VERSION}-bin-hadoop3 ${SPARK_HOME} && \
     rm spark-${SPARK_VERSION}-bin-hadoop3.tgz && \
-    chmod -R 755 ${SPARK_HOME}
+    chmod -R 755 ${SPARK_HOME} && \
+    chown -R airflow:root ${SPARK_HOME}
 
 # Spark and PySpark environment variables
 ENV SPARK_HOME=/opt/spark
