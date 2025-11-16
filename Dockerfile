@@ -5,6 +5,7 @@ USER root
 # Install essential system dependencies (Java required for PySpark)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
+    wget \
     openjdk-11-jdk-headless \
     procps \
     && rm -rf /var/lib/apt/lists/*
@@ -13,11 +14,22 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 ENV PATH=$PATH:$JAVA_HOME/bin
 
-# Spark and Delta Lake environment variables
+# Download and install Spark (required for PySpark)
+RUN SPARK_VERSION=3.5.0 && \
+    SPARK_HOME=/opt/spark && \
+    wget -q https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop3.tgz && \
+    tar -xzf spark-${SPARK_VERSION}-bin-hadoop3.tgz && \
+    mv spark-${SPARK_VERSION}-bin-hadoop3 ${SPARK_HOME} && \
+    rm spark-${SPARK_VERSION}-bin-hadoop3.tgz && \
+    chmod -R 755 ${SPARK_HOME} && \
+    chown -R airflow:root ${SPARK_HOME}
+
+# Spark and PySpark environment variables
 ENV SPARK_HOME=/opt/spark
+ENV PATH=$PATH:${SPARK_HOME}/bin:${SPARK_HOME}/sbin
 ENV PYSPARK_PYTHON=python3
 ENV PYSPARK_DRIVER_PYTHON=python3
-ENV PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+ENV PYSPARK_SUBMIT_ARGS="--conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension --conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog pyspark-shell"
 
 USER airflow
 

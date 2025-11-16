@@ -15,6 +15,6 @@ lxml==4.9.3
 boto3==1.40.23
 Jinja2==3.1.6
 pyyaml==6.0.1
-pendulum==3.0.0
+pendulum>=2.0,<3.0
 great-expectations==1.5.11
 
