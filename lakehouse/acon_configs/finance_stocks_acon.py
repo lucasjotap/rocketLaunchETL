@@ -42,13 +42,13 @@ FINANCE_STOCKS_ACON = {
             "fail_on_error": False,
             "dq_functions": [
                 {
-                    "dq_function": "expect_column_values_to_not_be_null",
+                    "function": "expect_column_values_to_not_be_null",
                     "args": {
                         "column": "symbol",
                     },
                 },
                 {
-                    "dq_function": "expect_column_values_to_be_in_set",
+                    "function": "expect_column_values_to_be_in_set",
                     "args": {
                         "column": "symbol",
                         "value_set": ["AAPL", "GOOGL", "MSFT", "AMZN", "TSLA"],

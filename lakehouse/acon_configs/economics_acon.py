@@ -42,7 +42,7 @@ ECONOMICS_ACON = {
             "fail_on_error": False,
             "dq_functions": [
                 {
-                    "dq_function": "expect_column_values_to_not_be_null",
+                    "function": "expect_column_values_to_not_be_null",
                     "args": {
                         "column": "date",
                     },

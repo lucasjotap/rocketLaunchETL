@@ -42,13 +42,13 @@ BITCOIN_ACON = {
             "fail_on_error": False,
             "dq_functions": [
                 {
-                    "dq_function": "expect_column_values_to_not_be_null",
+                    "function": "expect_column_values_to_not_be_null",
                     "args": {
                         "column": "id",
                     },
                 },
                 {
-                    "dq_function": "expect_column_values_to_be_between",
+                    "function": "expect_column_values_to_be_between",
                     "args": {
                         "column": "price",
                         "min_value": 0,
