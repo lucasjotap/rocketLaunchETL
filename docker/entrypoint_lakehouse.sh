@@ -9,6 +9,7 @@ export PYTHONPATH=/opt/airflow:${PYTHONPATH}
 # Create necessary directories if they don't exist
 mkdir -p /opt/airflow/lakehouse/{bronze,silver,gold}/{finance,economics,currency,blockchain,bitcoin}
 mkdir -p /opt/airflow/lakehouse/schemas/{bronze,silver,gold}
+mkdir -p /opt/airflow/lakehouse/dq_artifacts
 mkdir -p /opt/airflow/logs
 
 # Set Spark configuration for local mode

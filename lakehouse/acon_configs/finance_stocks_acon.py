@@ -38,6 +38,8 @@ FINANCE_STOCKS_ACON = {
             "spec_id": "finance_stocks_dq",
             "input_id": "finance_stocks_with_metadata",
             "dq_type": "validator",
+            "store_backend": "file_system",
+            "local_fs_root_dir": "/opt/airflow/lakehouse/dq_artifacts",
             "result_sink_db_table": "finance.stocks_dq_checks",
             "fail_on_error": False,
             "dq_functions": [

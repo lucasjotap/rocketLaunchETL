@@ -54,7 +54,8 @@ RUN chmod +x /entrypoint_lakehouse.sh
 # Create necessary directories for lakehouse architecture
 RUN mkdir -p ${AIRFLOW_HOME}/lakehouse/{bronze,silver,gold}/{finance,economics,currency,blockchain,bitcoin} \
     && mkdir -p ${AIRFLOW_HOME}/logs \
-    && mkdir -p ${AIRFLOW_HOME}/lakehouse/schemas/{bronze,silver,gold}
+    && mkdir -p ${AIRFLOW_HOME}/lakehouse/schemas/{bronze,silver,gold} \
+    && mkdir -p ${AIRFLOW_HOME}/lakehouse/dq_artifacts
 
 # Set Python path to include project root
 ENV PYTHONPATH=${AIRFLOW_HOME}:${PYTHONPATH}

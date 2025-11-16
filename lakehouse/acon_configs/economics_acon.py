@@ -38,6 +38,8 @@ ECONOMICS_ACON = {
             "spec_id": "economics_dq",
             "input_id": "economics_with_metadata",
             "dq_type": "validator",
+            "store_backend": "file_system",
+            "local_fs_root_dir": "/opt/airflow/lakehouse/dq_artifacts",
             "result_sink_db_table": "economics.economics_dq_checks",
             "fail_on_error": False,
             "dq_functions": [

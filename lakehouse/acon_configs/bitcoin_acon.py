@@ -38,6 +38,8 @@ BITCOIN_ACON = {
             "spec_id": "bitcoin_dq",
             "input_id": "bitcoin_with_metadata",
             "dq_type": "validator",
+            "store_backend": "file_system",
+            "local_fs_root_dir": "/opt/airflow/lakehouse/dq_artifacts",
             "result_sink_db_table": "bitcoin.crypto_dq_checks",
             "fail_on_error": False,
             "dq_functions": [
