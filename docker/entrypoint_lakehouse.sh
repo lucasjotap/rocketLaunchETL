@@ -12,6 +12,10 @@ mkdir -p /opt/airflow/lakehouse/schemas/{bronze,silver,gold}
 mkdir -p /opt/airflow/lakehouse/dq_artifacts
 mkdir -p /opt/airflow/logs
 
+# Ensure proper permissions for lakehouse directories
+chmod -R 755 /opt/airflow/lakehouse
+chown -R airflow:root /opt/airflow/lakehouse 2>/dev/null || true
+
 # Set Spark configuration for local mode
 export SPARK_MASTER=${SPARK_MASTER:-"local[*]"}
 export SPARK_DRIVER_MEMORY=${SPARK_DRIVER_MEMORY:-"2g"}
