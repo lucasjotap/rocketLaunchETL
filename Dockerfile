@@ -13,11 +13,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 ENV PATH=$PATH:$JAVA_HOME/bin
 
-# Spark and Delta Lake environment variables
-ENV SPARK_HOME=/opt/spark
+# PySpark environment variables (for local mode, PySpark uses bundled Spark)
+# Don't set SPARK_HOME - PySpark will use its bundled Spark in local mode
 ENV PYSPARK_PYTHON=python3
 ENV PYSPARK_DRIVER_PYTHON=python3
-ENV PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+# Disable SPARK_HOME requirement for local mode
+ENV PYSPARK_SUBMIT_ARGS="--conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension --conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog pyspark-shell"
 
 USER airflow
 
